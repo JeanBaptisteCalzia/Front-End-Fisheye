@@ -7,7 +7,7 @@ function photographerTemplate(data) {
     const article = document.createElement("article");
 
     const link = document.createElement("a");
-    link.href = `http://127.0.0.1:5500/photographer.html`;
+    link.href = `http://127.0.0.1:5500/photographer.html?${id}`;
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);
