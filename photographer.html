@@ -8,6 +8,13 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Fisheye - photographe</title>
   </head>
   <body>
@@ -51,7 +58,65 @@
             ></div>
           </div>
         </div>
-        <div class="photograph-content__medias"></div>
+        <div class="photograph-content__medias">
+          <section class="gallery">
+            <article class="gallery__card">
+              <a href="#" role="link">
+                <figure>
+                  <img
+                    class="gallery__thumbnail"
+                    src="assets/photographers/mimi/Event_BenevidesWedding.jpg"
+                    alt="Description"
+                  />
+                </figure>
+              </a>
+              <figcaption>
+                <h2>Titre</h2>
+                <div role="group" aria-label="Number of likes">
+                  <span>12</span>
+                  <button type="button">
+                    <span
+                      class="fas fa-heart"
+                      aria-label="”likes”"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </div>
+              </figcaption>
+            </article>
+            <article class="gallery__card">
+              <a href="#" role="link">
+                <figure>
+                  <img
+                    class="gallery__thumbnail"
+                    src="assets/photographers/mimi/Event_BenevidesWedding.jpg"
+                    alt="Description"
+                  />
+                </figure>
+              </a>
+              <figcaption>
+                <h2>Titre</h2>
+                <div role="group" aria-label="Number of likes">
+                  <span>12</span>
+                  <button type="button">
+                    <span
+                      class="fas fa-heart"
+                      aria-label="”likes”"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </div>
+              </figcaption>
+            </article>
+          </section>
+          <aside>
+            <p class="photographer_Likes">
+              <span class="photographer_likes_count">400</span>
+              <span class="fas fa-heart" aria-hidden="true"></span>
+            </p>
+            <span>300€ / jour</span>
+          </aside>
+        </div>
       </section>
     </main>
     <div id="contact_modal">
