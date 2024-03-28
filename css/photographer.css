@@ -21,6 +21,9 @@ img {
 figure {
   margin: 0;
   padding: 0;
+}
+
+figure a {
   height: 360px;
 }
 
