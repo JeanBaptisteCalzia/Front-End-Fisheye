@@ -1,4 +1,6 @@
-async function getPhotographers() {
+import { photographerTemplate } from "../templates/photographer.js";
+
+export async function getPhotographers() {
   // We retrieve data from JSON file
   const reponse = await fetch("data/photographers.json");
   const photographers = await reponse.json();
