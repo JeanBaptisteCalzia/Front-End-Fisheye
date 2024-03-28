@@ -61,6 +61,14 @@
   margin: 0 100px;
 }
 
+.photograph-content__filter {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .modal {
   border-radius: 5px;
   background-color: #db8876;
@@ -124,7 +132,6 @@ form input {
 
 .combo {
   display: block;
-  margin-bottom: 1.5em;
   max-width: 170px;
   position: relative;
 }
@@ -166,10 +173,10 @@ form input {
 }
 
 .combo-label {
-  display: block;
   font-size: 20px;
   font-weight: 100;
   margin-bottom: 0.25em;
+  margin-right: 1.5rem;
 }
 
 .combo-menu {
