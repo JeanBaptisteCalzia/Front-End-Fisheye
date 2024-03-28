@@ -9,8 +9,8 @@ export async function getPhotographers() {
   return photograph;
 }
 
-async function displayData(photographers) {
-  const photographersSection = document.querySelector(".photographer_section");
+export async function displayData(photographers, section) {
+  const photographersSection = document.querySelector(section);
 
   photographers.forEach((photographer) => {
     const photographerModel = photographerTemplate(photographer);
@@ -19,10 +19,10 @@ async function displayData(photographers) {
   });
 }
 
-async function init() {
+export async function init() {
   //  We retrieve Photographers data
   const photographers = await getPhotographers();
-  displayData(photographers);
+  displayData(photographers, ".photographer_section");
 }
 
 init();
