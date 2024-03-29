@@ -12,8 +12,8 @@ function displayData(photographer) {
   photographersSection.appendChild(userCardDOM);
 }
 
-const expr = photographerId;
-switch (expr) {
+const id = photographerId;
+switch (id) {
   case "243":
     displayData(photographers[0]);
     break;
@@ -33,5 +33,5 @@ switch (expr) {
     displayData(photographers[5]);
     break;
   default:
-    console.log(`Sorry, there is no content for ${expr}.`);
+    console.log(`Sorry, there is no content for ${id}.`);
 }
