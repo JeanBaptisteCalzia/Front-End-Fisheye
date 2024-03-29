@@ -8,8 +8,8 @@ const photographers = await getPhotographers();
 function displayData(photographer) {
   const photographersSection = document.querySelector(".photograph-header");
   const photographerModel = photographerTemplate(photographer);
-  const userCardDOM = photographerModel.getUserHeaderDOM();
-  photographersSection.appendChild(userCardDOM);
+  const userCardHeaderDOM = photographerModel.getUserHeaderDOM();
+  photographersSection.appendChild(userCardHeaderDOM);
 }
 
 const id = photographerId;
