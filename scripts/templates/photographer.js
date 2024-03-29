@@ -35,7 +35,7 @@ export function photographerTemplate(data) {
   }
 
   // Photographer page
-  function getUserHeaderDOM() {
+  function getUserPhotographDOM() {
     const div = document.createElement("div");
     const header = document.querySelector(".photograph-header");
     const aside = document.querySelector("aside");
@@ -81,6 +81,6 @@ export function photographerTemplate(data) {
     price,
     id,
     getUserCardDOM,
-    getUserHeaderDOM,
+    getUserPhotographDOM,
   };
 }

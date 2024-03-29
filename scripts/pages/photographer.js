@@ -1,5 +1,6 @@
 import { photographerTemplate } from "../templates/photographer.js";
 import { getPhotographers } from "../pages/index.js";
+import { MediasFactory } from "../factories/MediasFactory.js";
 
 // We Retrieve Photographer ID
 const photographerId = new URLSearchParams(window.location.search).get("id");
@@ -8,9 +9,15 @@ const photographers = await getPhotographers();
 function displayData(photographer) {
   const photographersSection = document.querySelector(".photograph-header");
   const photographerModel = photographerTemplate(photographer);
-  const userCardHeaderDOM = photographerModel.getUserHeaderDOM();
+  const userCardHeaderDOM = photographerModel.getUserPhotographDOM();
   photographersSection.appendChild(userCardHeaderDOM);
 }
+
+// const image = MediasFactory.createMedia("image");
+// const video = MediasFactory.createMedia("video");
+
+// console.log(image);
+// console.log(video);
 
 const id = photographerId;
 switch (id) {
