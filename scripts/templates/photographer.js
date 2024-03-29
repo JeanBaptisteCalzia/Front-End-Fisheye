@@ -1,8 +1,8 @@
 export function photographerTemplate(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
-
   const picture = `assets/photographers/${portrait}`;
 
+  // Home page
   function getUserCardDOM() {
     const article = document.createElement("article");
 
@@ -33,6 +33,44 @@ export function photographerTemplate(data) {
     article.appendChild(spanPrice);
     return article;
   }
+
+  // Photographer page
+  function getUserHeaderDOM() {
+    const div = document.createElement("div");
+    const header = document.querySelector(".photograph-header");
+    const aside = document.querySelector("aside");
+
+    const img = document.createElement("img");
+    img.setAttribute("src", picture);
+    img.alt = name;
+
+    const h1 = document.createElement("h1");
+    h1.textContent = name;
+
+    const pCityCountry = document.createElement("p");
+    pCityCountry.textContent = `${city}, ${country}`;
+
+    const pTagline = document.createElement("p");
+    pTagline.textContent = tagline;
+
+    const btn = document.createElement("button");
+    btn.setAttribute("class", "contact_button");
+    btn.setAttribute("onclick", "displayModal()");
+    btn.textContent = "Contactez-moi";
+
+    const spanPrice = document.createElement("span");
+    spanPrice.textContent = `${price}€ / jour`;
+
+    header.appendChild(div);
+    header.appendChild(btn);
+    header.appendChild(img);
+    div.appendChild(h1);
+    div.appendChild(pCityCountry);
+    div.appendChild(pTagline);
+    aside.appendChild(spanPrice);
+    return header;
+  }
+
   return {
     name,
     picture,
@@ -43,5 +81,6 @@ export function photographerTemplate(data) {
     price,
     id,
     getUserCardDOM,
+    getUserHeaderDOM,
   };
 }
