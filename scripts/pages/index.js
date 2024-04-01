@@ -19,7 +19,7 @@ export async function displayData(photographers, section) {
   });
 }
 
-export async function init() {
+async function init() {
   //  We retrieve Photographers data
   const photographers = await getPhotographers();
   displayData(photographers, ".photographer_section");
