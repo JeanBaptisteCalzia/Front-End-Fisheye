@@ -24,6 +24,7 @@ async function getPhotographers() {
   return photograph;
 }
 
+// Display Photographer info inside header of photographer page
 function displayPhotograph(photographer) {
   const photographersSection = document.querySelector(".photograph-header");
   const photographerModel = photographerTemplate(photographer);
@@ -40,11 +41,26 @@ function getOnePhotographer(id) {
   }
 }
 
+// Retrieve Name from one Photographer
+function getOnePhotographName(photographerId) {
+  return photographers.filter(
+    (photographer) => photographer.photographerId === photographerId
+  );
+}
+
+// Display name of one Photographer inside modal
+function displayPhotographName(photographeName) {
+  const FormPhotographName = document.querySelector(".modal-title");
+  FormPhotographName.textContent = getOnePhotographName(photograph);
+  FormPhotographName.innerHTML = `Contactez-moi <br> ${photographeName.name}`;
+}
+
 // Retrieve Media from one Photographer
 function getPhotographMedias(photographerId) {
   return medias.filter((media) => media.photographerId === photographerId);
 }
 
+// Display Medias of one Photographer
 function displayMediaData(photograph, media) {
   const content = document.querySelector(".gallery");
   const photographName = photograph.name.split(" ")[0].toLowerCase();
@@ -114,3 +130,4 @@ const photographMedias = getPhotographMedias(photograph.id);
 displayPhotograph(photograph);
 document.querySelector(".gallery").innerHTML = "";
 displayMediaData(photograph, photographMedias);
+displayPhotographName(photograph);

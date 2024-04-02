@@ -23,7 +23,7 @@
         ><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"
       /></a>
     </header>
-    <main id="main" role="main">
+    <main id="main" role="main" aria-hidden="false">
       <section class="photograph-header"></section>
       <section class="photograph-content">
         <div class="photograph-content__filter">
@@ -60,17 +60,40 @@
       </section>
     </main>
     <div id="contact_modal">
-      <div class="modal">
+      <div
+        class="modal"
+        aria-hidden="true"
+        role="dialog"
+        aria-describedby="Formulaire de contact"
+      >
         <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 class="modal-title">Contactez-moi</h2>
+          <button
+            class="modal-close-btn"
+            type="button"
+            aria-label="Close contact form"
+            onclick="closeModal()"
+          ></button>
         </header>
-        <form>
-          <div>
-            <label>Prénom</label>
-            <input />
-          </div>
-          <button class="contact_button">Envoyer</button>
+
+        <form method="post" novalidate>
+          <fieldset>
+            <legend class="sr-only">Vos coordonnées</legend>
+            <label id="firstname-label" for="firstname">Prénom</label>
+            <input type="text" id="firstname" name="firstname" />
+            <label id="lastname-label" for="lastname">Nom</label>
+            <input type="text" id="lastname" name="lastname" />
+            <label id="email-label" for="email">Email</label>
+            <input type="email" id="email" name="email" />
+          </fieldset>
+          <fieldset>
+            <legend class="sr-only">Votre message</legend>
+            <label id="message-label" for="message">Votre message</label>
+            <textarea id="message" name="message"></textarea>
+          </fieldset>
+          <button class="contact_button" type="submit" aria-label="Send">
+            Envoyer
+          </button>
         </form>
       </div>
     </div>
