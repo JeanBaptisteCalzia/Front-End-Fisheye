@@ -103,6 +103,12 @@ figure a {
   justify-content: flex-start;
 }
 
+.photograph-content__medias {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .gallery {
   position: relative;
   display: grid;
@@ -164,15 +170,14 @@ figure a {
 
 /* Aside */
 aside {
-  position: absolute;
+  position: sticky;
   bottom: 0;
-  right: 0;
   display: flex;
   align-items: center;
   gap: 72px;
   width: fit-content;
   padding: 1rem 2rem;
-  margin-right: 2rem;
+  margin-right: -3.75rem;
   border-radius: 4px 4px 0 0;
   font-weight: bold;
   font-size: 1.5rem;
