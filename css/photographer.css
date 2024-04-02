@@ -34,6 +34,15 @@ figure a {
 
 #contact_modal {
   display: none;
+  background: rgba(196, 196, 196, 40%);
+  z-index: 1;
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 }
 
 .photograph-header {
@@ -194,10 +203,11 @@ aside p {
   border-radius: 5px;
   background-color: #db8876;
   width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
   padding: 35px;
   margin: auto;
 }
