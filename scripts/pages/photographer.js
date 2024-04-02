@@ -51,39 +51,66 @@ function displayMediaData(photograph, media) {
 
   for (let i = 0; i < media.length; i++) {
     const article = document.createElement("article");
-    article.className = "gallery__card";
-    article.innerHTML = `
-          <figure>
-            <a href="#" role="link">
-              <img
-                class="gallery__thumbnail"
-                src="../assets/photographers/${photographName}/${media[i].image}"
-                alt="${media[i].title}"
-              />
-            </a>
-            <figcaption>
-              <h2>${media[i].title}</h2>
-              <div role="group" aria-label="Number of likes">
-                <span>${media[i].likes}</span>
-                <button type="button">
-                  <span
-                    class="fas fa-heart"
-                    aria-label="”likes”"
-                    aria-hidden="true"
-                  ></span>
-                </button>
-              </div>
-            </figcaption>
-          </figure>
-      `;
+
+    if (media[i].image) {
+      article.className = "gallery__card";
+      article.innerHTML = `
+            <figure>
+              <a href="#" role="link">
+                <img
+                  class="gallery__thumbnail"
+                  src="../assets/photographers/${photographName}/${media[i].image}"
+                  alt="${media[i].title}"
+                />
+              </a>
+              <figcaption>
+                <h2>${media[i].title}</h2>
+                <div role="group" aria-label="Number of likes">
+                  <span>${media[i].likes}</span>
+                  <button type="button">
+                    <span
+                      class="fas fa-heart"
+                      aria-label="”likes”"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </div>
+              </figcaption>
+            </figure>
+        `;
+    } else if (media[i].video) {
+      article.className = "gallery__card";
+      article.innerHTML = `
+            <figure>
+              <a href="#" role="link">
+                <video controls preload="metadata">class="gallery_thumbnail" aria-label="${media[i].title}">
+                  <source src="../assets/photographers/${photographName}/${media[i].video}" type="video/mp4">
+                </video>
+              </a>
+              <figcaption>
+                <h2>${media[i].title}</h2>
+                <div role="group" aria-label="Number of likes">
+                  <span>${media[i].likes}</span>
+                  <button type="button">
+                    <span
+                      class="fas fa-heart"
+                      aria-label="”likes”"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </div>
+              </figcaption>
+            </figure>
+        `;
+    }
 
     content.appendChild(article);
   }
 }
 
 const photograph = getOnePhotographer(photographerId);
-const photographhMedias = getPhotographMedias(photograph.id);
+const photographMedias = getPhotographMedias(photograph.id);
 
 displayPhotograph(photograph);
 document.querySelector(".gallery").innerHTML = "";
-displayMediaData(photograph, photographhMedias);
+displayMediaData(photograph, photographMedias);
