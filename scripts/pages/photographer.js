@@ -1,6 +1,5 @@
 import { photographerTemplate } from "../templates/photographer.js";
-import { getPhotographers } from "../pages/index.js";
-import { MediasFactory } from "../factories/MediasFactory.js";
+// import { getPhotographers } from "../pages/index.js";
 
 // We Retrieve Photographer ID
 const photographerId = new URLSearchParams(window.location.search).get("id");
@@ -16,22 +15,41 @@ async function getMedia() {
   return mediaContent;
 }
 
-function displayData(photographer) {
-  const photographersSection = document.querySelector(".photograph-header");
-  const photographerModel = photographerTemplate(photographer);
-  const userCardHeaderDOM = photographerModel.getUserPhotographDOM();
-  photographersSection.appendChild(userCardHeaderDOM);
+async function getPhotographers() {
+  // We retrieve data from JSON file
+  const reponse = await fetch("data/photographers.json");
+  const photographers = await reponse.json();
+  // We retrieve Photographers data form JSON file
+  const photograph = photographers["photographers"];
+  return photograph;
 }
 
-// const image = MediasFactory.createMedia(displayMediaData(medias));
-// const video = MediasFactory.createMedia("video");
+function displayPhotograph(photographer) {
+  const photographersSection = document.querySelector(".photograph-header");
+  const photographerModel = photographerTemplate(photographer);
+  const userCardUserDOM = photographerModel.getUserPhotographDOM();
+  photographersSection.contains(userCardUserDOM);
+}
 
-// console.log(image);
-// console.log(video);
+// Retrieve data from one Photographer
+function getOnePhotographer(id) {
+  for (let i = 0; i < photographers.length; i++) {
+    if (photographers[i].id === parseInt(id)) {
+      return photographers[i];
+    }
+  }
+}
 
-function displayMediaData(data) {
-  for (let i = 0; i < data.length; i++) {
-    const content = document.querySelector(".gallery");
+// Retrieve Media from one Photographer
+function getPhotographMedias(photographerId) {
+  return medias.filter((media) => media.photographerId === photographerId);
+}
+
+function displayMediaData(photograph, media) {
+  const content = document.querySelector(".gallery");
+  const photographName = photograph.name.split(" ")[0].toLowerCase();
+
+  for (let i = 0; i < media.length; i++) {
     const article = document.createElement("article");
     article.className = "gallery__card";
     article.innerHTML = `
@@ -39,14 +57,14 @@ function displayMediaData(data) {
             <a href="#" role="link">
               <img
                 class="gallery__thumbnail"
-                src="../assets/photographers/mimi/${data[i].image}"
-                alt="${data[i].title}"
+                src="../assets/photographers/${photographName}/${media[i].image}"
+                alt="${media[i].title}"
               />
             </a>
             <figcaption>
-              <h2>${data[i].title}</h2>
+              <h2>${media[i].title}</h2>
               <div role="group" aria-label="Number of likes">
-                <span>${data[i].likes}</span>
+                <span>${media[i].likes}</span>
                 <button type="button">
                   <span
                     class="fas fa-heart"
@@ -63,39 +81,9 @@ function displayMediaData(data) {
   }
 }
 
-const mediafilter = medias.filter(function (media) {
-  const id = photographerId;
+const photograph = getOnePhotographer(photographerId);
+const photographhMedias = getPhotographMedias(photograph.id);
 
-  switch (id) {
-    case "243":
-      displayData(photographers[0]);
-      return media.photographerId === 243;
-      break;
-    case "930":
-      displayData(photographers[1]);
-      return media.photographerId === 930;
-      break;
-    case "82":
-      displayData(photographers[2]);
-      return media.photographerId === 82;
-      break;
-    case "527":
-      displayData(photographers[3]);
-      return media.photographerId === 527;
-      break;
-    case "925":
-      displayData(photographers[4]);
-      return media.photographerId === 925;
-      break;
-    case "195":
-      displayData(photographers[5]);
-      return media.photographerId === 195;
-      break;
-    default:
-      console.log(`Sorry, there is no content for ${id}.`);
-  }
-});
-
-console.log(mediafilter);
+displayPhotograph(photograph);
 document.querySelector(".gallery").innerHTML = "";
-displayMediaData(mediafilter);
+displayMediaData(photograph, photographhMedias);

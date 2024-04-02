@@ -9,7 +9,7 @@ export async function getPhotographers() {
   return photograph;
 }
 
-export async function displayData(photographers, section) {
+async function displayData(photographers, section) {
   const photographersSection = document.querySelector(section);
 
   photographers.forEach((photographer) => {
