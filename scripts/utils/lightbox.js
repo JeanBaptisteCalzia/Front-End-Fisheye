@@ -2,7 +2,7 @@ class Lightbox {
   static init() {
     const links = Array.from(
       document.querySelectorAll(
-        ".gallery a[href$='jpg'], .gallery a[href$='mp4'"
+        ".gallery a[href$='jpg'], .gallery a[href$='mp4']"
       )
     );
 
@@ -74,7 +74,7 @@ class Lightbox {
     this.loadImage(this.images[i - 1]);
   }
 
-  buildLightbox(url) {
+  buildLightbox(url, caption) {
     const lightboxContainer = document.createElement("div");
     lightboxContainer.classList.add("lightbox");
     lightboxContainer.setAttribute("role", "dialog");
@@ -88,6 +88,7 @@ class Lightbox {
       </button>
       <figure class="lightbox__container" aria-label="Current image">
         <img src="${url}" alt="" />
+        <figcaption><h2>${caption}</h2></figcaption>
       </figure>
       `;
 
