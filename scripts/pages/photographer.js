@@ -72,7 +72,7 @@ function displayMediaData(photograph, media) {
       article.className = "gallery__card";
       article.innerHTML = `
             <figure>
-              <a href="#" role="link">
+              <a href="../assets/photographers/${photographName}/${media[i].image}" role="link">
                 <img
                   class="gallery__thumbnail"
                   src="../assets/photographers/${photographName}/${media[i].image}"
@@ -98,7 +98,7 @@ function displayMediaData(photograph, media) {
       article.className = "gallery__card";
       article.innerHTML = `
             <figure>
-              <a href="#" role="link">
+              <a href="../assets/photographers/${photographName}/${media[i].video}" role="link">
                 <video controls preload="metadata">class="gallery_thumbnail" aria-label="${media[i].title}">
                   <source src="../assets/photographers/${photographName}/${media[i].video}" type="video/mp4">
                 </video>
