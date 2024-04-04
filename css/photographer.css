@@ -257,8 +257,18 @@ aside p {
 }
 
 .modal .modal-close-btn {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
+  border: none;
+}
+
+.modal .modal-close-btn::before {
+  content: "\f00d";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: white;
 }
 
 form {
