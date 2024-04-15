@@ -1,28 +1,10 @@
+import { getPhotographers, getMedia } from "../api/api.js";
 import { photographerTemplate } from "../templates/photographer.js";
-// import { getPhotographers } from "../pages/index.js";
 
 // We Retrieve Photographer ID
 const photographerId = new URLSearchParams(window.location.search).get("id");
 const photographers = await getPhotographers();
 const medias = await getMedia();
-
-async function getMedia() {
-  // We retrieve data from JSON file
-  const reponse = await fetch("data/photographers.json");
-  const media = await reponse.json();
-  // We retrieve media data form JSON file
-  const mediaContent = media["media"];
-  return mediaContent;
-}
-
-async function getPhotographers() {
-  // We retrieve data from JSON file
-  const reponse = await fetch("data/photographers.json");
-  const photographers = await reponse.json();
-  // We retrieve Photographers data form JSON file
-  const photograph = photographers["photographers"];
-  return photograph;
-}
 
 // Display Photographer info inside header of photographer page
 function displayPhotograph(photographer) {
