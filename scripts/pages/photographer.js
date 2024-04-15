@@ -53,7 +53,7 @@ function displayMediaData(photograph, media) {
     article.className = "gallery__card";
 
     const figureElement = document.createElement("figure");
-    const buttonElement = document.createElement("button");
+    // const buttonElement = document.createElement("div");
 
     if (media[i].image || media[i].video) {
       if (media[i].image) {
@@ -64,7 +64,7 @@ function displayMediaData(photograph, media) {
         );
         mediaElement.setAttribute("alt", media[i].title);
         mediaElement.className = "gallery__thumbnail";
-        buttonElement.appendChild(mediaElement);
+        figureElement.appendChild(mediaElement);
       }
 
       if (media[i].video) {
@@ -77,11 +77,11 @@ function displayMediaData(photograph, media) {
         let mediaElement = document.createElement("video");
         mediaElement.className = "gallery__thumbnail";
         mediaElement.appendChild(sourceElement);
-        buttonElement.appendChild(mediaElement);
+        figureElement.appendChild(mediaElement);
       }
     }
 
-    buttonElement.addEventListener("click", () =>
+    figureElement.addEventListener("click", () =>
       document.dispatchEvent(
         new CustomEvent("mediaClick", {
           detail: {
@@ -93,7 +93,7 @@ function displayMediaData(photograph, media) {
       )
     );
 
-    figureElement.appendChild(buttonElement);
+    figureElement.contains(figureElement);
     article.appendChild(figureElement);
     content.appendChild(article);
   }
