@@ -67,59 +67,68 @@ function displayMediaData(photograph, media) {
 
   for (let i = 0; i < media.length; i++) {
     const article = document.createElement("article");
+    article.className = "gallery__card";
 
-    if (media[i].image) {
-      article.className = "gallery__card";
-      article.innerHTML = `
-            <figure>
-              <a href="../assets/photographers/${photographName}/${media[i].image}" role="link">
-                <img
-                  class="gallery__thumbnail"
-                  src="../assets/photographers/${photographName}/${media[i].image}"
-                  alt="${media[i].title}"
-                />
-              </a>
-              <figcaption>
-                <h2>${media[i].title}</h2>
-                <div role="group" aria-label="Number of likes">
-                  <span>${media[i].likes}</span>
-                  <button type="button">
-                    <span
-                      class="fas fa-heart"
-                      aria-label="”likes”"
-                      aria-hidden="true"
-                    ></span>
-                  </button>
-                </div>
-              </figcaption>
-            </figure>
-        `;
-    } else if (media[i].video) {
-      article.className = "gallery__card";
-      article.innerHTML = `
-            <figure>
-              <a href="../assets/photographers/${photographName}/${media[i].video}" role="link">
-                <video controls preload="metadata">class="gallery_thumbnail" aria-label="${media[i].title}">
-                  <source src="../assets/photographers/${photographName}/${media[i].video}" type="video/mp4">
-                </video>
-              </a>
-              <figcaption>
-                <h2>${media[i].title}</h2>
-                <div role="group" aria-label="Number of likes">
-                  <span>${media[i].likes}</span>
-                  <button type="button">
-                    <span
-                      class="fas fa-heart"
-                      aria-label="”likes”"
-                      aria-hidden="true"
-                    ></span>
-                  </button>
-                </div>
-              </figcaption>
-            </figure>
-        `;
+    const figureElement = document.createElement("figure");
+    const figcaptionElement = document.createElement("figcaption");
+    const h2Element = document.createElement("h2");
+    const h2TextContent = document.createTextNode(media[i].title);
+    const divElement = document.createElement("div");
+    divElement.setAttribute("role", "group");
+    divElement.setAttribute("aria-label", "Number of likes");
+    const spanElement = document.createElement("span");
+    const spanTextContent = document.createTextNode(media[i].likes);
+
+    const btnElement = document.createElement("button");
+    btnElement.setAttribute("type", "button");
+    const btnSpanElement = document.createElement("span");
+    btnSpanElement.setAttribute("aria-label", "likes");
+    btnSpanElement.setAttribute("aria-hidden", "true");
+    btnSpanElement.className = "fas fa-heart";
+
+    if (media[i].image || media[i].video) {
+      if (media[i].image) {
+        const mediaElement = document.createElement("img");
+        mediaElement.setAttribute(
+          "src",
+          `../assets/photographers/${photographName}/${media[i].image}`
+        );
+        mediaElement.setAttribute("alt", media[i].title);
+        mediaElement.className = "gallery__thumbnail";
+        figureElement.appendChild(mediaElement);
+        figureElement.appendChild(figcaptionElement);
+        figcaptionElement.appendChild(h2Element);
+        h2Element.appendChild(h2TextContent);
+        figcaptionElement.appendChild(divElement);
+        spanElement.appendChild(spanTextContent);
+        divElement.appendChild(spanElement);
+        divElement.appendChild(btnElement);
+        btnElement.appendChild(btnSpanElement);
+      }
+
+      if (media[i].video) {
+        const sourceElement = document.createElement("source");
+        sourceElement.setAttribute(
+          "src",
+          `../assets/photographers/${photographName}/${media[i].video}`
+        );
+        sourceElement.setAttribute("type", "video/mp4");
+        const mediaElement = document.createElement("video");
+        mediaElement.className = "gallery__thumbnail";
+        mediaElement.appendChild(sourceElement);
+        figureElement.appendChild(mediaElement);
+        figureElement.appendChild(figcaptionElement);
+        figcaptionElement.appendChild(h2Element);
+        h2Element.appendChild(h2TextContent);
+        figcaptionElement.appendChild(divElement);
+        spanElement.appendChild(spanTextContent);
+        divElement.appendChild(spanElement);
+        divElement.appendChild(btnElement);
+        btnElement.appendChild(btnSpanElement);
+      }
     }
 
+    article.appendChild(figureElement);
     content.appendChild(article);
   }
 }
