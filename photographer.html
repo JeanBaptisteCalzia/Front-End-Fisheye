@@ -101,13 +101,24 @@
     </div>
 
     <!-- Lightbox Modal -->
-    <div id="lightbox">
+    <div class="lightbox">
       <div
         class="modal"
         aria-hidden="true"
         role="dialog"
+        aria-label = "image closeup view"
         aria-describedby="Lightbox">
-        <figure id="lightbox__figure"></figure>
+        <button class="lightbox__close" aria-label="Close dialog">
+          <span class="sr-only">Fermer</span>
+        </button>
+        <button class="lightbox__next" aria-label="Next image">
+          <span class="sr-only">Suivant</span>
+        </button>
+        <button class="lightbox__previous" aria-label="Previous image">
+          <span class="sr-only">Précédent</span>
+        </button>
+        <figure class="lightbox__figure"></figure>
+        <figcaption></figcaption>
       </div>
     </div>
 

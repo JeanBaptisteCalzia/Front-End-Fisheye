@@ -53,11 +53,10 @@ function displayMediaData(photograph, media) {
     article.className = "gallery__card";
 
     const figureElement = document.createElement("figure");
-    // const buttonElement = document.createElement("div");
 
     if (media[i].image || media[i].video) {
       if (media[i].image) {
-        let mediaElement = document.createElement("img");
+        const mediaElement = document.createElement("img");
         mediaElement.setAttribute(
           "src",
           `../assets/photographers/${photographName}/${media[i].image}`
@@ -74,11 +73,17 @@ function displayMediaData(photograph, media) {
           `../assets/photographers/${photographName}/${media[i].video}`
         );
         sourceElement.setAttribute("type", "video/mp4");
-        let mediaElement = document.createElement("video");
+        const mediaElement = document.createElement("video");
         mediaElement.className = "gallery__thumbnail";
         mediaElement.appendChild(sourceElement);
         figureElement.appendChild(mediaElement);
       }
+
+      const figcaptionElement = document.createElement("figcaption");
+      const h2Element = document.createElement("h2");
+      h2Element.innerHTML = `${media[i].title}`;
+      figureElement.appendChild(figcaptionElement);
+      figcaptionElement.appendChild(h2Element);
     }
 
     figureElement.addEventListener("click", () =>
