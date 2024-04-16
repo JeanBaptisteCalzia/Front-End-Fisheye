@@ -69,6 +69,7 @@ function displayMediaData(photograph, media) {
     article.className = "gallery__card";
 
     const figureElement = document.createElement("figure");
+    const innerWrapperFigureElement = document.createElement("div");
 
     if (media[i].image || media[i].video) {
       if (media[i].image) {
@@ -79,7 +80,8 @@ function displayMediaData(photograph, media) {
         );
         mediaElement.setAttribute("alt", media[i].title);
         mediaElement.className = "gallery__thumbnail";
-        figureElement.appendChild(mediaElement);
+        innerWrapperFigureElement.appendChild(mediaElement);
+        figureElement.appendChild(innerWrapperFigureElement);
       }
 
       if (media[i].video) {
@@ -92,7 +94,8 @@ function displayMediaData(photograph, media) {
         const mediaElement = document.createElement("video");
         mediaElement.className = "gallery__thumbnail";
         mediaElement.appendChild(sourceElement);
-        figureElement.appendChild(mediaElement);
+        innerWrapperFigureElement.appendChild(mediaElement);
+        figureElement.appendChild(innerWrapperFigureElement);
       }
 
       const figcaptionElement = document.createElement("figcaption");
@@ -118,7 +121,7 @@ function displayMediaData(photograph, media) {
       divNumberLikes.appendChild(btnLikes);
     }
 
-    figureElement.addEventListener("click", () =>
+    innerWrapperFigureElement.addEventListener("click", () =>
       document.dispatchEvent(
         new CustomEvent("mediaClick", {
           detail: {
