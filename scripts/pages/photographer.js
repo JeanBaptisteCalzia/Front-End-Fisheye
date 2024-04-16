@@ -1,7 +1,7 @@
 import { getPhotographers, getMedia } from "../api/api.js";
 import { photographerTemplate } from "../templates/photographer.js";
 
-// We retrieve URL data and display index page if photographer page has no id
+// Retrieve URL data and display index page if photographer page has no id
 window.addEventListener(
   "load",
   () => {
@@ -17,7 +17,7 @@ window.addEventListener(
   false
 );
 
-// We Retrieve Photographer ID
+// Retrieve Photographer ID
 const photographerId = new URLSearchParams(window.location.search).get("id");
 const photographers = await getPhotographers();
 const medias = await getMedia();
@@ -146,3 +146,40 @@ displayPhotograph(photograph);
 document.querySelector(".gallery").innerHTML = "";
 displayMediaData(photograph, photographMedias);
 displayPhotographName(photograph);
+
+// Display numbers of likes
+const btnLike = document.querySelectorAll("figcaption button");
+const likesCount = document.querySelector(".photographer-likes__count");
+
+function totalLikes() {
+  const initialValue = 0;
+  const totalLikes = photographMedias.reduce(
+    (accumulator, media) => accumulator + media.likes,
+    initialValue
+  );
+  likesCount.textContent = `${totalLikes}`;
+}
+
+totalLikes();
+
+// Allow users to add likes or unlikes
+btnLike.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const btnLikes = btn.previousSibling.textContent;
+
+    const mediaLikes = photographMedias.find(
+      (media) => media.likes === parseInt(btnLikes)
+    );
+
+    if (!btn.classList.contains("liked")) {
+      mediaLikes.likes++;
+    } else {
+      mediaLikes.likes--;
+    }
+    btn.classList.toggle("liked");
+    const spanLikes = btn.previousSibling;
+    spanLikes.textContent = `${mediaLikes.likes}`;
+
+    totalLikes();
+  });
+});
