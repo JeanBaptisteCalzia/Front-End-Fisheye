@@ -1,6 +1,22 @@
 import { getPhotographers, getMedia } from "../api/api.js";
 import { photographerTemplate } from "../templates/photographer.js";
 
+// We retrieve URL data and display index page if photographer page has no id
+window.addEventListener(
+  "load",
+  () => {
+    let searchParams = new URLSearchParams(window.location.search);
+
+    if (searchParams.has("id")) {
+      let galId = searchParams.get("id");
+      console.log(galId);
+    } else {
+      window.location.pathname = "index.html";
+    }
+  },
+  false
+);
+
 // We Retrieve Photographer ID
 const photographerId = new URLSearchParams(window.location.search).get("id");
 const photographers = await getPhotographers();
