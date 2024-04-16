@@ -146,19 +146,15 @@ fieldset {
   gap: 24px 95px;
 }
 
-.gallery__card a {
+.gallery__card img {
   overflow: hidden;
   display: block;
+  width: 100%;
   border-radius: 4px 4px;
 }
-.gallery__card .gallery__thumbnail {
-  transition: all 300ms ease-in-out;
-}
-.gallery__card a:hover .gallery__thumbnail {
-  transform: scale(1.05);
-}
-.gallery__card img {
-  width: 100%;
+
+.gallery__card img:hover {
+  cursor: pointer;
 }
 
 .gallery__card h2 {
@@ -231,6 +227,8 @@ aside p {
   transform: translate(50%, -50%);
   padding: 35px;
   margin: auto;
+  animation: modalIn 0.5s;
+  transition: opacity 0.3s;
 }
 
 .modal header {
@@ -535,6 +533,15 @@ form textarea {
 }
 
 @keyframes lightboxIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalIn {
   from {
     opacity: 0;
   }
