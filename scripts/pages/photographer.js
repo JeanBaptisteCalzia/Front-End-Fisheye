@@ -100,6 +100,22 @@ function displayMediaData(photograph, media) {
       h2Element.innerHTML = `${media[i].title}`;
       figureElement.appendChild(figcaptionElement);
       figcaptionElement.appendChild(h2Element);
+
+      const divNumberLikes = document.createElement("div");
+      divNumberLikes.setAttribute("aria-label", "Number of likes");
+      divNumberLikes.setAttribute("role", "group");
+
+      const spanNumberLikes = document.createElement("span");
+      spanNumberLikes.innerHTML = `${media[i].likes}`;
+
+      const btnLikes = document.createElement("button");
+      btnLikes.classList.add("fas", "fa-heart");
+      btnLikes.setAttribute("aria-label", "likes");
+      btnLikes.setAttribute("aria-hidden", "true");
+
+      figcaptionElement.appendChild(divNumberLikes);
+      divNumberLikes.appendChild(spanNumberLikes);
+      divNumberLikes.appendChild(btnLikes);
     }
 
     figureElement.addEventListener("click", () =>
