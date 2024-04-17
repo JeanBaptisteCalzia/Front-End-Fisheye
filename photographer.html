@@ -27,26 +27,24 @@
       <section class="photograph-header"></section>
       <section class="photograph-content">
         <div class="photograph-content__filter">
-          <label id="combo1-label" class="combo-label">Trier par</label>
-          <div class="combo js-select">
-            <div
-              aria-controls="listbox1"
-              aria-expanded="false"
-              aria-haspopup="listbox"
-              aria-labelledby="combo1-label"
-              id="combo1"
-              class="combo-input"
-              role="combobox"
-              tabindex="0"
-            ></div>
-            <div
-              class="combo-menu"
-              role="listbox"
-              id="listbox1"
-              aria-labelledby="combo1-label"
-              tabindex="-1"
-            ></div>
-          </div>
+          <label id="listbox1label">Trier par</label>
+          <div class="dropdown">
+            <button type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by">
+                <span>Popularité</span>
+                <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
+            </button>
+            <ul id="listbox1" role="listbox" class="dropdown__content" tabindex="0" aria-hidden="true" aria-labelledby="listbox1label" aria-activedescendant="listbox1-1">
+              <li role="option" class="selected">
+                <button id="listbox1-1" type="button" tabindex="-1" aria-label="Sort by popularity" aria-selected="true">Popularité</button>
+              </li>
+              <li role="option">
+                <button id="listbox1-2" type="button" tabindex="-1" aria-label="Sort by date">Date</button>
+              </li>
+              <li role="option">
+                <button id="listbox1-3" type="button" tabindex="-1" aria-label="Sort by title">Titre</button>
+              </li>
+            </ul>
+        </div>
         </div>
         <div class="photograph-content__medias">
           <section class="gallery"></section>
@@ -134,7 +132,7 @@
     <script type="module" src="scripts/pages/photographer.js"></script>
 
     <!-- Utils -->
-    <script src="scripts/utils/filterMedia.js"></script>
+    <script type="module" src="scripts/utils/filterMedia.js"></script>
     <script src="scripts/utils/lightbox.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
   </body>

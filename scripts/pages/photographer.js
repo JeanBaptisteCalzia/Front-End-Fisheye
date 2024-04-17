@@ -31,7 +31,7 @@ function displayPhotograph(photographer) {
 }
 
 // Retrieve data from one Photographer
-function getOnePhotographer(id) {
+export function getOnePhotographer(id) {
   for (let i = 0; i < photographers.length; i++) {
     if (photographers[i].id === parseInt(id)) {
       return photographers[i];
@@ -54,12 +54,12 @@ function displayPhotographName(photographeName) {
 }
 
 // Retrieve Media from one Photographer
-function getPhotographMedias(photographerId) {
+export function getPhotographMedias(photographerId) {
   return medias.filter((media) => media.photographerId === photographerId);
 }
 
 // Display Medias of one Photographer
-function displayMediaData(photograph, media) {
+export function displayMediaData(photograph, media) {
   const content = document.querySelector(".gallery");
   const photographName = photograph.name.split(" ")[0].toLowerCase();
 
