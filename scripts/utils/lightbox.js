@@ -7,10 +7,11 @@ function display(medias, currentIndex, photographName) {
   modal.style.display = "block";
   const figureElement = document.querySelector(".lightbox__figure");
   const lightboxH2Element = document.createElement("h2");
-  const figcaption = document.querySelector(".lightbox figcaption");
+  const figcaption = document.createElement("figcaption");
 
   figureElement.innerHTML = "";
-  figcaption.innerHTML = "";
+
+  const mediasList = medias;
 
   if (medias[currentIndex].image || medias[currentIndex].video) {
     if (medias[currentIndex].image) {
@@ -21,11 +22,8 @@ function display(medias, currentIndex, photographName) {
       );
       mediaElement.setAttribute("alt", medias[currentIndex].title);
       figureElement.appendChild(mediaElement);
-
-      const lightboxFigcaptionElement = document.querySelector(
-        ".lightbox figcaption"
-      );
-      lightboxFigcaptionElement.appendChild(lightboxH2Element);
+      figureElement.appendChild(figcaption);
+      figcaption.appendChild(lightboxH2Element);
       lightboxH2Element.innerHTML = `${medias[currentIndex].title}`;
     }
 
@@ -38,20 +36,43 @@ function display(medias, currentIndex, photographName) {
       sourceElement.setAttribute("type", "video/mp4");
       const mediaElement = document.createElement("video");
       mediaElement.appendChild(sourceElement);
+      mediaElement.setAttribute("controls", "controls");
       figureElement.appendChild(mediaElement);
-
-      const figcaptionElement = document.querySelector(".lightbox figcaption");
-      figcaptionElement.appendChild(lightboxH2Element);
+      figureElement.appendChild(figcaption);
+      figcaption.appendChild(lightboxH2Element);
       lightboxH2Element.innerHTML = `${medias[currentIndex].title}`;
     }
   }
 
-  const galleryWrapper = document.querySelector(".gallery");
-  const images = [...galleryWrapper.querySelectorAll(".gallery img")];
-  let index = 0;
-  const mediasList = medias;
-  let showImg = document.querySelector(".lightbox figure img");
-  let showCaption = document.querySelector(".lightbox figcaption h2");
+  function nextMedia() {
+    currentIndex++;
+    if (currentIndex > mediasList.length) {
+      currentIndex = 0;
+    } else {
+      lightboxTemplate();
+    }
+  }
+
+  function prevMedia() {
+    currentIndex--;
+    if (currentIndex < 0) {
+      currentIndex = mediasList.length;
+    } else {
+      lightboxTemplate();
+    }
+  }
+
+  function lightboxTemplate() {
+    const currentMediaLightbox = mediasList[currentIndex];
+    figureElement.innerHTML = `
+        ${
+          currentMediaLightbox.image
+            ? `<img src="../assets/photographers/${photographName}/${currentMediaLightbox.image}" alt="${currentMediaLightbox.alt}">`
+            : `<video controls aria-label="${currentMediaLightbox.alt}"><source src="../assets/photographers/${photographName}/${currentMediaLightbox.video}" type="video/mp4"></video>`
+        }
+        <figcaption><h2>${currentMediaLightbox.title}</h2></figcaption>
+    `;
+  }
 
   lightboxNextBtn.addEventListener("click", () => {
     nextMedia();
@@ -72,38 +93,11 @@ function display(medias, currentIndex, photographName) {
         prevMedia();
       } else if (e.key === "ArrowRight") {
         nextMedia();
-      } else if (e.key === "Enter") {
+      } else if (e.key === "Escape") {
         closeLightbox();
       }
     }
   });
-
-  // Click Next Button Function
-  function nextMedia() {
-    index++;
-
-    if (index > mediasList.length - 1) {
-      index = 0;
-      showImg.src = images[index].src;
-      showCaption.innerHTML = medias[index].title;
-    }
-    showImg.src = images[index].src;
-    showCaption.innerHTML = medias[index].title;
-    console.log(index);
-    console.log(medias[index].title);
-  }
-
-  // Click Prev Button Function
-  function prevMedia() {
-    index--;
-    if (index < 0) {
-      index = mediasList.length - 1;
-      showImg.src = images[index].src;
-      showCaption.innerHTML = medias[index].title;
-    }
-    showImg.src = images[index].src;
-    showCaption.innerHTML = medias[index].title;
-  }
 
   // Click Close Button Function
   function closeLightbox() {

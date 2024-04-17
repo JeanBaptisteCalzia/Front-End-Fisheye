@@ -47,7 +47,7 @@ function getOnePhotographName(photographerId) {
 }
 
 // Display name of one Photographer inside modal
-function displayPhotographName(photographeName) {
+export function displayPhotographName(photographeName) {
   const FormPhotographName = document.querySelector(".modal-title");
   FormPhotographName.textContent = getOnePhotographName(photograph);
   FormPhotographName.innerHTML = `Contactez-moi <br> ${photographeName.name}`;

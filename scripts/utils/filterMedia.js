@@ -79,7 +79,6 @@ btnSortDateDropdown.addEventListener("click", () => {
 
   gallery.innerHTML = "";
   displayMediaData(photograph, sortMedias);
-  console.log(sortMedias);
 });
 
 // sort by value (Numbers of Likes)
