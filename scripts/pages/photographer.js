@@ -137,6 +137,29 @@ export function displayMediaData(photograph, media) {
     article.appendChild(figureElement);
     content.appendChild(article);
   }
+
+  // Allow users to add likes or unlikes
+  const btnLike = document.querySelectorAll("figcaption button");
+  btnLike.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const btnLikes = btn.previousSibling.textContent;
+
+      const mediaLikes = photographMedias.find(
+        (media) => media.likes === parseInt(btnLikes)
+      );
+
+      if (!btn.classList.contains("liked")) {
+        mediaLikes.likes++;
+      } else {
+        mediaLikes.likes--;
+      }
+      btn.classList.toggle("liked");
+      let spanLikes = btn.previousSibling;
+      spanLikes.textContent = `${mediaLikes.likes}`;
+
+      totalLikes();
+    });
+  });
 }
 
 const photograph = getOnePhotographer(photographerId);
@@ -148,7 +171,6 @@ displayMediaData(photograph, photographMedias);
 displayPhotographName(photograph);
 
 // Display numbers of likes
-const btnLike = document.querySelectorAll("figcaption button");
 const likesCount = document.querySelector(".photographer-likes__count");
 
 function totalLikes() {
@@ -161,25 +183,3 @@ function totalLikes() {
 }
 
 totalLikes();
-
-// Allow users to add likes or unlikes
-btnLike.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const btnLikes = btn.previousSibling.textContent;
-
-    const mediaLikes = photographMedias.find(
-      (media) => media.likes === parseInt(btnLikes)
-    );
-
-    if (!btn.classList.contains("liked")) {
-      mediaLikes.likes++;
-    } else {
-      mediaLikes.likes--;
-    }
-    btn.classList.toggle("liked");
-    const spanLikes = btn.previousSibling;
-    spanLikes.textContent = `${mediaLikes.likes}`;
-
-    totalLikes();
-  });
-});
