@@ -154,6 +154,10 @@ fieldset {
   margin-bottom: 4rem;
 }
 
+.gallery figure {
+  position: relative;
+}
+
 .gallery figure div {
   overflow: hidden;
   border-radius: 4px;
@@ -207,6 +211,25 @@ fieldset {
 }
 
 .gallery__card figcaption button:hover {
+  cursor: pointer;
+}
+
+.gallery .gallery__card--video::before {
+  content: "\f144";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 3rem;
+  color: #901c1c;
+  margin: 0;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.gallery .gallery__card--video::before {
   cursor: pointer;
 }
 

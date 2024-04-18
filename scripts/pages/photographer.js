@@ -88,6 +88,7 @@ export function displayMediaData(photograph, media) {
         mediaElement.className = "gallery__thumbnail";
         mediaElement.appendChild(sourceElement);
         innerWrapperFigureElement.appendChild(mediaElement);
+        innerWrapperFigureElement.classList.add("gallery__card--video");
         figureElement.appendChild(innerWrapperFigureElement);
       }
 
