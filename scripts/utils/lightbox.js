@@ -46,20 +46,18 @@ function display(medias, currentIndex, photographName) {
 
   function nextMedia() {
     currentIndex++;
-    if (currentIndex > mediasList.length) {
+    if (currentIndex > mediasList.length - 1) {
       currentIndex = 0;
-    } else {
-      lightboxTemplate();
     }
+    lightboxTemplate();
   }
 
   function prevMedia() {
     currentIndex--;
     if (currentIndex < 0) {
-      currentIndex = mediasList.length;
-    } else {
-      lightboxTemplate();
+      currentIndex = mediasList.length - 1;
     }
+    lightboxTemplate();
   }
 
   function lightboxTemplate() {
