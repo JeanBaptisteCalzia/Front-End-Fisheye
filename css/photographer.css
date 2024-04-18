@@ -16,21 +16,19 @@ body {
   margin: 0;
 }
 
+video,
 img {
-  object-fit: cover;
-}
-
-video {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: all 0.3s;
 }
 
-figure {
+figure,
+figure > div {
   margin: 0;
   padding: 0;
-}
-
-figure img {
   height: 360px;
 }
 
@@ -68,29 +66,49 @@ fieldset {
 
 .photograph-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 1rem;
   background-color: #fafafa;
-  margin: 0 100px;
-  padding: 3.5rem 3.125rem;
+  padding: 2rem 1.5rem;
+}
+
+.photograph-header img {
+  order: 1;
+  height: 80px;
+  width: 80px;
+  border-radius: 50% 50%;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 25%);
+}
+
+.photograph-header div {
+  order: 2;
+  margin: 0 1.5rem 1.5rem 1.5rem;
+  width: calc(100% - 8rem);
+}
+
+.photograph-header button {
+  order: 3;
+  display: block;
+  flex-grow: 1;
 }
 
 .photograph-header h1 {
   color: #d3573c;
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: 300;
   margin: 0 0;
 }
 
 .photograph-header p {
   color: #901c1c;
-  font-size: 1.5rem;
-  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  margin: 0 0;
 }
 
 .photograph-header p + p {
   color: #525252;
-  font-size: 1.125rem;
+  font-size: 1rem;
 }
 
 .photograph-header span {
@@ -98,18 +116,24 @@ fieldset {
   font-size: 0.5625rem;
 }
 
-.photograph-header img {
-  height: 200px;
-  width: 200px;
-  border-radius: 50% 50%;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 25%);
-}
-
 .photograph-header a {
   text-align: center;
   text-decoration: none;
 }
 
+/* Photograph content */
+.photograph-content {
+  margin: 0 1rem;
+}
+
+.photograph-content__filter {
+  position: relative;
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
 .contact_button {
   font-size: 1.125rem;
   font-weight: 400;
@@ -121,30 +145,13 @@ fieldset {
   cursor: pointer;
 }
 
-.photograph-content {
-  margin: 0 100px;
-}
-
-.photograph-content__filter {
-  position: relative;
-  padding: 1.5rem 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.photograph-content__medias {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
+/* Gallery */
 .gallery {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px 95px;
+  grid-template-columns: 1fr;
+  gap: 4rem 2rem;
+  margin-bottom: 4rem;
 }
 
 .gallery figure div {
@@ -209,13 +216,13 @@ aside {
   bottom: 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 72px;
-  width: fit-content;
+  width: 100%;
   padding: 1rem 2rem;
-  margin-right: -3.75rem;
   border-radius: 4px 4px 0 0;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   background-color: #db8876;
   color: black;
 }
@@ -234,7 +241,7 @@ aside p {
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
-  padding: 35px;
+  padding: 1rem;
   margin: auto;
   animation: modalIn 0.5s;
   transition: opacity 0.3s;
@@ -395,9 +402,13 @@ form textarea {
   align-items: center;
 }
 
+.lightbox h2 {
+  font-size: 1.5rem;
+}
+
 .lightbox .modal {
   background-color: white;
-  width: auto;
+  width: 90%;
 }
 
 .lightbox figure {
@@ -413,13 +424,12 @@ form textarea {
   margin: 0 auto;
   background-color: #fff;
   border-radius: 0.5rem;
-  padding: 5rem 5rem 1rem 5rem;
+  /* padding: 5rem 5rem 1rem 5rem; */
   overflow: hidden;
 }
 
 .lightbox figure img,
 .lightbox figure video {
-  object-fit: contain;
   max-height: 900px;
   width: 100%;
   height: 100%;
@@ -432,14 +442,15 @@ form textarea {
   width: 100%;
   font-size: 1.5rem;
   margin: 0 auto;
+  padding-top: 1rem;
   color: #901c1c;
 }
 
 .lightbox__close {
   z-index: 1000;
   position: absolute;
-  top: 2rem;
-  right: 3rem;
+  top: 1.5rem;
+  right: 1.5rem;
 }
 
 .lightbox__previous,
@@ -466,11 +477,11 @@ form textarea {
 }
 
 .lightbox__next {
-  right: 3rem;
+  right: 1.5rem;
 }
 
 .lightbox__previous {
-  left: 3rem;
+  left: 1.5rem;
 }
 
 .lightbox__next::before,
@@ -479,7 +490,7 @@ form textarea {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 2.5rem;
-  color: #901c1c;
+  color: #fff;
 }
 
 .lightbox__next::before {
@@ -520,5 +531,226 @@ form textarea {
   }
   to {
     opacity: 1;
+  }
+}
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem 2rem;
+  }
+
+  .gallery figure div {
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .gallery__card img {
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    border-radius: 4px 4px;
+    transition: transform 0.3s;
+  }
+
+  .gallery__card img:hover,
+  .gallery__card video:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+
+  .gallery__card h2 {
+    margin: 0 0;
+    color: #901c1c;
+    font-size: 1.5rem;
+    display: inline-block;
+  }
+
+  .gallery__card figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .gallery__card figcaption > div {
+    display: inline-block;
+  }
+
+  .gallery__card figcaption > div > span {
+    font-size: 1.5rem;
+    color: #901c1c;
+  }
+
+  .gallery__card figcaption button {
+    padding: 0.75rem;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+  }
+
+  .gallery__card figcaption button.liked {
+    color: #901c1c;
+  }
+
+  .gallery__card figcaption button:hover {
+    cursor: pointer;
+  }
+
+  /* Aside */
+  aside {
+    justify-content: initial;
+    width: fit-content;
+    font-size: 1.5rem;
+  }
+}
+
+/* Large and up */
+@media screen and (min-width: 64em) {
+  main,
+  header {
+    margin: 0 auto;
+    max-width: 1600px;
+  }
+
+  .photograph-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fafafa;
+    margin: 0 100px;
+    padding: 3.5rem 3.125rem;
+  }
+
+  .photograph-header p {
+    color: #901c1c;
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+  }
+
+  .photograph-header p + p {
+    color: #525252;
+    font-size: 1.125rem;
+  }
+
+  .photograph-header span {
+    color: #757575;
+    font-size: 0.5625rem;
+  }
+
+  .photograph-header img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50% 50%;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 25%);
+  }
+
+  .photograph-header a {
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .photograph-content {
+    margin: 0 100px;
+  }
+
+  .photograph-content__filter {
+    position: relative;
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  /* Aside */
+  aside {
+    float: right;
+  }
+
+  /* Photograph header */
+  .photograph-header {
+    flex-wrap: initial;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .photograph-header img {
+    order: 3;
+    height: 200px;
+    width: 200px;
+  }
+
+  .photograph-header div {
+    order: 1;
+    margin: 0;
+    width: initial;
+  }
+
+  .photograph-header button {
+    order: 2;
+    display: block;
+    flex-grow: initial;
+  }
+
+  .photograph-header h1 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+  }
+  /* Gallery */
+  .gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6rem 6rem;
+  }
+
+  /* Lightbox */
+  .lightbox .modal {
+    width: 60%;
+  }
+
+  .lightbox .lightbox__figure {
+    width: 90%;
+  }
+
+  .lightbox__previous,
+  .lightbox__next {
+    z-index: 1000;
+    position: absolute;
+    top: 50%;
+    border-radius: 0.5rem;
+    transform: translateY(-50%);
+    padding: 0.5rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: 0.3s;
+  }
+
+  .lightbox__previous:hover,
+  .lightbox__next:hover {
+    opacity: 1;
+  }
+
+  .lightbox__close {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    right: 0.75rem;
+    top: 0.75rem;
+  }
+
+  .lightbox__next {
+    right: 0.75rem;
+  }
+
+  .lightbox__previous {
+    left: 0.75rem;
+  }
+
+  .lightbox__next::before,
+  .lightbox__previous::before,
+  .lightbox__close::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: #901c1c;
   }
 }

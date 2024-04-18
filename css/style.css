@@ -20,6 +20,7 @@ header h1 {
 
 .logo {
   height: 50px;
+  width: auto;
 }
 
 .photographer_section {
@@ -79,8 +80,8 @@ header h1 {
   }
 }
 
-/* Medium and up */
-@media screen and (min-width: 45em) {
+/* Large and up */
+@media screen and (min-width: 64em) {
   header {
     display: flex;
     flex-direction: row;
@@ -96,10 +97,6 @@ header h1 {
   h1 {
     margin-right: 100px;
   }
-}
-
-/* Large and up */
-@media screen and (min-width: 64em) {
   .photographer_section {
     grid-template-columns: 1fr 1fr 1fr;
   }
