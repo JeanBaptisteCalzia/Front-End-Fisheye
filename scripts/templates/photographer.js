@@ -55,6 +55,7 @@ export function photographerTemplate(data) {
 
     const btn = document.createElement("button");
     btn.setAttribute("class", "contact_button");
+    btn.setAttribute("aria-label", "Contact Me");
     btn.setAttribute("onclick", "displayModal()");
     btn.textContent = "Contactez-moi";
 
