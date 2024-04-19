@@ -73,6 +73,15 @@ header h1 {
   text-decoration: none;
 }
 
+/* Focus */
+a:focus,
+article a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 3px solid #d3573c;
+}
+
 /* Medium and up */
 @media screen and (min-width: 40em) {
   .photographer_section {

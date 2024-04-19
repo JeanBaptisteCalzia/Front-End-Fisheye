@@ -137,7 +137,6 @@ export function displayMediaData(photograph, media) {
   btnLike.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const btnLikes = btn.previousSibling.textContent;
-
       const mediaLikes = photographMedias.find(
         (media) => media.likes === parseInt(btnLikes)
       );
