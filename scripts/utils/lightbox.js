@@ -1,7 +1,6 @@
 const lightboxCloseBtn = document.querySelector(".lightbox__close");
 const lightboxNextBtn = document.querySelector(".lightbox__next");
 const lightboxPrevBtn = document.querySelector(".lightbox__previous");
-const galleryCard = document.querySelector(".gallery__card a");
 
 function display(medias, currentIndex, photographName) {
   const modal = document.querySelector(".lightbox");
@@ -86,7 +85,6 @@ function display(medias, currentIndex, photographName) {
 
   lightboxCloseBtn.addEventListener("click", () => {
     closeLightbox();
-    galleryCard.focus();
   });
 
   // Keyboard navigation (left/right arrow keys)
@@ -98,7 +96,6 @@ function display(medias, currentIndex, photographName) {
         nextMedia();
       } else if (e.key === "Escape") {
         closeLightbox();
-        galleryCard.focus();
       }
     }
   });
