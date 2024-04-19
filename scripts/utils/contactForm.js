@@ -15,6 +15,8 @@ function displayModal() {
   modal.setAttribute("aria-hidden", "false");
   body.setAttribute("class", "no-scroll");
   modalCloseBtn.focus();
+  // Start listening for tabs by adding an event listener when the modal opens.
+  document.addEventListener(`keydown`, initTrapFocus);
 }
 
 function closeModal() {
@@ -23,6 +25,8 @@ function closeModal() {
   modal.setAttribute("aria-hidden", "true");
   body.setAttribute("class", "");
   openModalBtn.focus();
+  // Stop listening for tabs by removing the event listener when the modal closes.
+  document.removeEventListener(`keydown`, initTrapFocus);
 }
 
 // Close modal when escape key is pressed
@@ -70,3 +74,36 @@ function validate(event) {
 }
 
 form.onsubmit = validate;
+
+// Trapping Focus Inside the Modal
+function trapFocus(e, modalId) {
+  const isTabPressed = e.key === `Tab` || e.keyCode === 9;
+
+  if (!isTabPressed) {
+    return;
+  }
+  const focusableElements = `button, [href], input, textarea, [tabindex]:not([tabindex="-1"])`;
+  const modal = document.getElementById(modalId);
+
+  // get focusable elements in modal
+  const firstFocusableElement =
+    modalId === "trap-focus-modal"
+      ? document.querySelector(".modal-close-btn")
+      : modal.querySelectorAll(focusableElements)[0];
+  const focusableContent = modal.querySelectorAll(focusableElements);
+  const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+  if (e.shiftKey) {
+    if (document.activeElement === firstFocusableElement) {
+      lastFocusableElement.focus();
+      e.preventDefault();
+    }
+  } else if (document.activeElement === lastFocusableElement) {
+    firstFocusableElement.focus();
+    e.preventDefault();
+  }
+}
+
+function initTrapFocus(e) {
+  return trapFocus(e, "trap-focus-modal");
+}
