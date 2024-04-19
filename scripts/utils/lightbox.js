@@ -90,12 +90,20 @@ function display(medias, currentIndex, photographName) {
   // Keyboard navigation (left/right arrow keys)
   document.addEventListener("keydown", function (e) {
     if (document.querySelector(".lightbox").style.display === "block") {
+      const video = document.getElementsByTagName("video");
+
       if (e.key === "ArrowLeft") {
         prevMedia();
       } else if (e.key === "ArrowRight") {
         nextMedia();
       } else if (e.key === "Escape") {
         closeLightbox();
+      } else if (e.key === "Space") {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
       }
     }
   });
@@ -131,7 +139,7 @@ function trapFocus(e, modalId) {
   if (!isTabPressed) {
     return;
   }
-  const focusableElements = `button, [href], input, textarea, [tabindex]:not([tabindex="-1"])`;
+  const focusableElements = `button, [href], input, textarea, video, [tabindex]:not([tabindex="-1"])`;
   const modal = document.getElementById(modalId);
 
   // get focusable elements in modal
