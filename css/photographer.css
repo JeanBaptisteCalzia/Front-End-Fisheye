@@ -54,7 +54,7 @@ fieldset {
 #contact_modal {
   display: none;
   background: rgba(196, 196, 196, 40%);
-  z-index: 1;
+  z-index: 100;
   position: fixed;
   top: 50%;
   right: 50%;
@@ -273,7 +273,7 @@ aside p {
 .modal {
   border-radius: 5px;
   background-color: #db8876;
-  width: 50%;
+  width: 90%;
   z-index: 1;
   position: absolute;
   top: 50%;
@@ -290,6 +290,7 @@ aside p {
   width: 100%;
   height: initial;
   align-items: flex-start;
+  padding: 2rem 0;
 }
 
 .modal header button {
@@ -297,12 +298,15 @@ aside p {
   display: block;
 }
 
+.modal .contact_button {
+  width: 100%;
+}
+
 .modal header h2 {
-  font-size: 64px;
-  line-height: 64px;
+  font-size: 2.5rem;
+  line-height: 48px;
   text-align: left;
   font-weight: normal;
-  margin-bottom: 2.5rem;
   margin-top: 0;
 }
 
@@ -311,6 +315,9 @@ aside p {
   height: 2.5rem;
   background-color: transparent;
   border: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 .modal .modal-close-btn::before {
@@ -790,5 +797,26 @@ form textarea {
     font-weight: 900;
     font-size: 2.5rem;
     color: #901c1c;
+  }
+
+  /* Modal */
+  .modal {
+    width: 70%;
+  }
+
+  .modal header h2 {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+
+  .modal .contact_button {
+    width: initial;
+  }
+}
+/* XLarge and up */
+@media screen and (min-width: 75em) {
+  /* Modal */
+  .modal {
+    width: 50%;
   }
 }
