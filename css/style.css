@@ -74,12 +74,14 @@ header h1 {
 }
 
 /* Focus */
-a:focus,
-article a:focus,
-button:focus,
-input:focus,
-textarea:focus {
+button:focus-visible,
+a:focus-visible,
+article a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
   outline: 3px solid #d3573c;
+  border-radius: 4px;
 }
 
 /* Medium and up */

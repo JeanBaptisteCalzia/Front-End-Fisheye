@@ -1,6 +1,7 @@
 const lightboxCloseBtn = document.querySelector(".lightbox__close");
 const lightboxNextBtn = document.querySelector(".lightbox__next");
 const lightboxPrevBtn = document.querySelector(".lightbox__previous");
+const galleryCard = document.querySelector(".gallery__card a");
 
 function display(medias, currentIndex, photographName) {
   const modal = document.querySelector(".lightbox");
@@ -10,6 +11,9 @@ function display(medias, currentIndex, photographName) {
   const figcaption = document.createElement("figcaption");
 
   figureElement.innerHTML = "";
+
+  const lightbox__close = document.querySelector(".lightbox__close");
+  lightbox__close.focus();
 
   const mediasList = medias;
 
@@ -80,8 +84,9 @@ function display(medias, currentIndex, photographName) {
     prevMedia();
   });
 
-  lightboxCloseBtn.addEventListener("click", (event) => {
+  lightboxCloseBtn.addEventListener("click", () => {
     closeLightbox();
+    galleryCard.focus();
   });
 
   // Keyboard navigation (left/right arrow keys)
@@ -93,6 +98,7 @@ function display(medias, currentIndex, photographName) {
         nextMedia();
       } else if (e.key === "Escape") {
         closeLightbox();
+        galleryCard.focus();
       }
     }
   });
@@ -101,7 +107,45 @@ function display(medias, currentIndex, photographName) {
   function closeLightbox() {
     const imageContainer = document.querySelector(".lightbox");
     imageContainer.style.display = "none";
+    // Stop listening for tabs by removing the event listener when the modal closes.
+    document.removeEventListener(`keydown`, initTrapFocus);
   }
+
+  // Trapping Focus Inside the Modal
+  function trapFocus(e, modalId) {
+    const isTabPressed = e.key === `Tab` || e.keyCode === 9;
+
+    if (!isTabPressed) {
+      return;
+    }
+    const focusableElements = `button, [href], input, textarea, [tabindex]:not([tabindex="-1"])`;
+    const modal = document.getElementById(modalId);
+
+    // get focusable elements in modal
+    const firstFocusableElement =
+      modalId === "trap-focus"
+        ? document.querySelector(".lightbox__close")
+        : modal.querySelectorAll(focusableElements)[0];
+    const focusableContent = modal.querySelectorAll(focusableElements);
+    const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus();
+        e.preventDefault();
+      }
+    } else if (document.activeElement === lastFocusableElement) {
+      firstFocusableElement.focus();
+      e.preventDefault();
+    }
+  }
+
+  function initTrapFocus(e) {
+    return trapFocus(e, `trap-focus`);
+  }
+
+  // Start listening for tabs by adding an event listener when the modal opens.
+  document.addEventListener(`keydown`, initTrapFocus);
 }
 
 document.addEventListener("mediaClick", (event) =>
