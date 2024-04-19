@@ -62,7 +62,7 @@ export function displayMediaData(photograph, media) {
     article.className = "gallery__card";
 
     const figureElement = document.createElement("figure");
-    const innerWrapperFigureElement = document.createElement("div");
+    const innerWrapperFigureElement = document.createElement("a");
 
     if (media[i].image || media[i].video) {
       if (media[i].image) {
@@ -73,6 +73,8 @@ export function displayMediaData(photograph, media) {
         );
         mediaElement.setAttribute("alt", media[i].title);
         mediaElement.className = "gallery__thumbnail";
+        innerWrapperFigureElement.title = media[i].title;
+        innerWrapperFigureElement.href = `../assets/photographers/${photographName}/${media[i].image}`;
         innerWrapperFigureElement.appendChild(mediaElement);
         figureElement.appendChild(innerWrapperFigureElement);
       }
@@ -89,6 +91,8 @@ export function displayMediaData(photograph, media) {
         mediaElement.appendChild(sourceElement);
         innerWrapperFigureElement.appendChild(mediaElement);
         innerWrapperFigureElement.classList.add("gallery__card--video");
+        innerWrapperFigureElement.title = media[i].title;
+        innerWrapperFigureElement.href = `../assets/photographers/${photographName}/${media[i].video}`;
         figureElement.appendChild(innerWrapperFigureElement);
       }
 
@@ -115,6 +119,10 @@ export function displayMediaData(photograph, media) {
       divNumberLikes.appendChild(btnLikes);
     }
 
+    innerWrapperFigureElement.addEventListener("click", (e) => {
+      e.preventDefault();
+    });
+
     innerWrapperFigureElement.addEventListener("click", () =>
       document.dispatchEvent(
         new CustomEvent("mediaClick", {
@@ -122,6 +130,7 @@ export function displayMediaData(photograph, media) {
             medias: media,
             currentIndex: i,
             photographName: photographName,
+            bubbles: true,
           },
         })
       )

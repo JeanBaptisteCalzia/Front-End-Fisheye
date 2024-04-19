@@ -158,8 +158,11 @@ fieldset {
   position: relative;
 }
 
-.gallery figure div {
+.gallery figure a {
   overflow: hidden;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
   border-radius: 4px;
 }
 
@@ -619,11 +622,11 @@ form textarea {
     gap: 10px;
   }
 
-  .gallery__card figcaption > div {
+  .gallery__card figcaption > a {
     display: inline-block;
   }
 
-  .gallery__card figcaption > div > span {
+  .gallery__card figcaption > a > span {
     font-size: 1.5rem;
     color: #901c1c;
   }
