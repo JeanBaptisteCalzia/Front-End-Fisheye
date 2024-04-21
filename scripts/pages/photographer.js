@@ -155,12 +155,15 @@ export function displayMediaData(photograph, media) {
       } else {
         mediaLikes.likes--;
       }
+
       btn.classList.toggle("liked");
       let spanLikes = btn.previousSibling;
       spanLikes.textContent = `${mediaLikes.likes}`;
 
       totalLikes();
     });
+
+    totalLikes();
   });
 }
 
@@ -173,9 +176,8 @@ displayMediaData(photograph, photographMedias);
 displayPhotographName(photograph);
 
 // Display numbers of likes
-const likesCount = document.querySelector(".photographer-likes__count");
-
 function totalLikes() {
+  const likesCount = document.querySelector(".photographer-likes__count");
   const initialValue = 0;
   const totalLikes = photographMedias.reduce(
     (accumulator, media) => accumulator + media.likes,
