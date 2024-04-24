@@ -7,6 +7,7 @@ const modalTitle = document.querySelector(".modal-title");
 const modalCloseBtn = document.querySelector(".modal-close-btn");
 const modalWrapper = document.getElementById("contact_modal");
 const form = document.querySelector("form");
+const modalFirstInput = document.getElementById("firstname");
 
 // Function
 function displayModal() {
@@ -14,7 +15,7 @@ function displayModal() {
   mainWrapper.setAttribute("aria-hidden", "true");
   modal.setAttribute("aria-hidden", "false");
   body.setAttribute("class", "no-scroll");
-  modalCloseBtn.focus();
+  modalFirstInput.focus();
   // Start listening for tabs by adding an event listener when the modal opens.
   document.addEventListener(`keydown`, initTrapFocus);
 }
