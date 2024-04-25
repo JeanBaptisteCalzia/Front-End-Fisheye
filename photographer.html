@@ -29,22 +29,49 @@
         <div class="photograph-content__filter">
           <p id="listbox1label">Trier par</p>
           <div class="dropdown">
-            <button type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by" aria-selected="true">
-                <span>Popularité</span>
-                <span class="fa-solid fa-chevron-down" aria-hidden="true"></span>
+            <button
+              type="button"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-label="Sort by"
+            >
+              <span>Popularité</span>
+              <span class="fa-solid fa-chevron-down" aria-hidden="true"></span>
             </button>
-            <ul id="listbox1" role="listbox" class="dropdown__content" tabindex="-1" aria-hidden="true" aria-labelledby="listbox1label" aria-activedescendant="listbox1-1">
+            <ul
+              id="listbox1"
+              role="listbox"
+              class="dropdown__content"
+              tabindex="-1"
+              aria-hidden="true"
+              aria-labelledby="listbox1label"
+              aria-activedescendant="listbox1-1"
+            >
               <li role="option" class="selected">
-                <button id="listbox1-1" type="button" aria-label="Sort by popularity">Popularité</button>
+                <button
+                  id="listbox1-1"
+                  type="button"
+                  aria-label="Sort by popularity"
+                >
+                  Popularité
+                </button>
               </li>
               <li role="option">
-                <button id="listbox1-2" type="button" aria-label="Sort by date">Date</button>
+                <button id="listbox1-2" type="button" aria-label="Sort by date">
+                  Date
+                </button>
               </li>
               <li role="option">
-                <button id="listbox1-3" type="button" aria-label="Sort by title">Titre</button>
+                <button
+                  id="listbox1-3"
+                  type="button"
+                  aria-label="Sort by title"
+                >
+                  Titre
+                </button>
               </li>
             </ul>
-        </div>
+          </div>
         </div>
         <div class="photograph-content__medias">
           <section class="gallery"></section>
@@ -74,7 +101,9 @@
             type="button"
             aria-label="Close contact form"
             onclick="closeModal()"
-          ><span class="sr-only">Fermer<span></span></button>
+          >
+            <span class="sr-only">Fermer</span>
+          </button>
         </header>
 
         <form method="post" novalidate>
@@ -102,11 +131,12 @@
     <!-- Lightbox Modal -->
     <div class="lightbox">
       <div
-      id="trap-focus-light-box"
+        id="trap-focus-light-box"
         class="modal"
         aria-hidden="true"
         role="dialog"
-        aria-label = "image closeup view">
+        aria-label="image closeup view"
+      >
         <button class="lightbox__close" aria-label="Close dialog">
           <span class="sr-only">Fermer</span>
         </button>
