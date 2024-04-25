@@ -1,4 +1,5 @@
 import { getPhotographers, getMedia } from "../api/api.js";
+import { createMedia } from "../factories/MediasFactory.js";
 import { photographerTemplate } from "../templates/photographer.js";
 
 // Retrieve URL data and display index page if photographer page has no id
@@ -51,94 +52,25 @@ export function getPhotographMedias(photographerId) {
   return medias.filter((media) => media.photographerId === photographerId);
 }
 
-// Display Medias of one Photographer
-export function displayMediaData(photograph, media) {
+// Display Medias
+export function displayMediaData(medias) {
   const content = document.querySelector(".gallery");
   const photographName = photograph.name.split(" ")[0].toLowerCase();
 
-  for (let i = 0; i < media.length; i++) {
-    const article = document.createElement("article");
-
-    article.className = "gallery__card";
-
-    const figureElement = document.createElement("figure");
-    const innerWrapperFigureElement = document.createElement("a");
-
-    if (media[i].image || media[i].video) {
-      if (media[i].image) {
-        const mediaElement = document.createElement("img");
-        mediaElement.setAttribute(
-          "src",
-          `../assets/photographers/${photographName}/${media[i].image}`
-        );
-        mediaElement.setAttribute("alt", media[i].title);
-        mediaElement.className = "gallery__thumbnail";
-        innerWrapperFigureElement.title = media[i].title;
-        innerWrapperFigureElement.href = `../assets/photographers/${photographName}/${media[i].image}`;
-        innerWrapperFigureElement.appendChild(mediaElement);
-        figureElement.appendChild(innerWrapperFigureElement);
-      }
-
-      if (media[i].video) {
-        const sourceElement = document.createElement("source");
-        sourceElement.setAttribute(
-          "src",
-          `../assets/photographers/${photographName}/${media[i].video}`
-        );
-        sourceElement.setAttribute("type", "video/mp4");
-        const mediaElement = document.createElement("video");
-        mediaElement.className = "gallery__thumbnail";
-        mediaElement.appendChild(sourceElement);
-        innerWrapperFigureElement.appendChild(mediaElement);
-        innerWrapperFigureElement.classList.add("gallery__card--video");
-        innerWrapperFigureElement.title = media[i].title;
-        innerWrapperFigureElement.href = `../assets/photographers/${photographName}/${media[i].video}`;
-        figureElement.appendChild(innerWrapperFigureElement);
-      }
-
-      const figcaptionElement = document.createElement("figcaption");
-      const h2Element = document.createElement("h2");
-      h2Element.innerHTML = `${media[i].title}`;
-      figureElement.appendChild(figcaptionElement);
-      figcaptionElement.appendChild(h2Element);
-
-      const divNumberLikes = document.createElement("div");
-      divNumberLikes.setAttribute("aria-label", "Number of likes");
-      divNumberLikes.setAttribute("role", "group");
-
-      const spanNumberLikes = document.createElement("span");
-      spanNumberLikes.innerHTML = `${media[i].likes}`;
-
-      const btnLikes = document.createElement("button");
-      btnLikes.classList.add("fas", "fa-heart");
-      btnLikes.setAttribute("aria-label", "likes");
-      btnLikes.setAttribute("aria-hidden", "true");
-
-      figcaptionElement.appendChild(divNumberLikes);
-      divNumberLikes.appendChild(spanNumberLikes);
-      divNumberLikes.appendChild(btnLikes);
-    }
-
-    innerWrapperFigureElement.addEventListener("click", (e) => {
-      e.preventDefault();
-    });
-
-    innerWrapperFigureElement.addEventListener("click", () =>
-      document.dispatchEvent(
-        new CustomEvent("mediaClick", {
-          detail: {
-            medias: media,
-            currentIndex: i,
-            photographName: photographName,
-            bubbles: true,
-          },
-        })
-      )
+  for (let i = 0; i < medias.length; i++) {
+    const media = createMedia(
+      medias[i].id,
+      medias[i].date,
+      medias[i].likes,
+      medias[i].photographerId,
+      photographName,
+      medias[i].price,
+      medias[i].title,
+      "image" in medias[i] ? medias[i].image : medias[i].video,
+      "image" in medias[i] ? "image" : "video",
+      i
     );
-
-    figureElement.contains(figureElement);
-    article.appendChild(figureElement);
-    content.appendChild(article);
+    content.appendChild(media.generateArticle());
   }
 
   // Allow users to add likes or unlikes
@@ -172,7 +104,7 @@ const photographMedias = getPhotographMedias(photograph.id);
 
 displayPhotograph(photograph);
 document.querySelector(".gallery").innerHTML = "";
-displayMediaData(photograph, photographMedias);
+displayMediaData(photographMedias);
 displayPhotographName(photograph);
 
 // Display numbers of likes

@@ -1,8 +1,17 @@
+import {
+  getOnePhotographer,
+  getPhotographMedias,
+} from "../pages/photographer.js";
+
 const lightboxCloseBtn = document.querySelector(".lightbox__close");
 const lightboxNextBtn = document.querySelector(".lightbox__next");
 const lightboxPrevBtn = document.querySelector(".lightbox__previous");
 
-function display(medias, currentIndex, photographName) {
+const photographerId = new URLSearchParams(window.location.search).get("id");
+const photograph = getOnePhotographer(photographerId);
+const photographMedias = getPhotographMedias(photograph.id);
+
+function display(medias, currentIndex, photographName, mediaType) {
   const modal = document.querySelector(".lightbox");
   modal.style.display = "block";
   const figureElement = document.querySelector(".lightbox__figure");
@@ -14,23 +23,23 @@ function display(medias, currentIndex, photographName) {
   const lightbox__close = document.querySelector(".lightbox__close");
   lightbox__close.focus();
 
-  const mediasList = medias;
+  const mediasList = photographMedias;
 
-  if (medias[currentIndex].image || medias[currentIndex].video) {
-    if (medias[currentIndex].image) {
+  if (mediaType == "image" || mediaType == "video") {
+    if (mediaType == "image") {
       const mediaElement = document.createElement("img");
       mediaElement.setAttribute(
         "src",
-        `../assets/photographers/${photographName}/${medias[currentIndex].image}`
+        `../assets/photographers/${photographName}/${mediasList[currentIndex].image}`
       );
-      mediaElement.setAttribute("alt", medias[currentIndex].title);
+      mediaElement.setAttribute("alt", mediasList[currentIndex].title);
       figureElement.appendChild(mediaElement);
       figureElement.appendChild(figcaption);
       figcaption.appendChild(lightboxH2Element);
-      lightboxH2Element.innerHTML = `${medias[currentIndex].title}`;
+      lightboxH2Element.innerHTML = `${mediasList[currentIndex].title}`;
     }
 
-    if (medias[currentIndex].video) {
+    if (mediaType == "video") {
       const sourceElement = document.createElement("source");
       sourceElement.setAttribute(
         "src",
@@ -128,7 +137,8 @@ document.addEventListener("mediaClick", (event) =>
   display(
     event.detail.medias,
     event.detail.currentIndex,
-    event.detail.photographName
+    event.detail.photographName,
+    event.detail.mediaType
   )
 );
 

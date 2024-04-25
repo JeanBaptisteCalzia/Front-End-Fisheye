@@ -66,7 +66,7 @@ btnSortTitleDropdown.addEventListener("click", () => {
   });
 
   gallery.innerHTML = "";
-  displayMediaData(photograph, sortMedias);
+  displayMediaData(photographMedias, sortMedias);
 });
 
 // sort by value (Dates ascending)
@@ -78,7 +78,7 @@ btnSortDateDropdown.addEventListener("click", () => {
   });
 
   gallery.innerHTML = "";
-  displayMediaData(photograph, sortMedias);
+  displayMediaData(photographMedias, sortMedias);
 });
 
 // sort by value (Numbers of Likes Popularity)
@@ -86,11 +86,11 @@ btnSortLikesDropdown.addEventListener("click", () => {
   const sortMedias = Array.from(photographMedias);
   sortMedias.sort((a, b) => b.likes - a.likes);
   gallery.innerHTML = "";
-  displayMediaData(photograph, sortMedias);
+  displayMediaData(photographMedias, sortMedias);
 });
 
 // Sort by value by default (Numbers of Likes Popularity)
 const sortMedias = Array.from(photographMedias);
 sortMedias.sort((a, b) => b.likes - a.likes);
 gallery.innerHTML = "";
-displayMediaData(photograph, sortMedias);
+displayMediaData(photographMedias, sortMedias);
