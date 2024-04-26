@@ -23,20 +23,20 @@ function display(medias, currentIndex, photographName, mediaType) {
   const lightbox__close = document.querySelector(".lightbox__close");
   lightbox__close.focus();
 
-  const mediasList = photographMedias;
+  medias = photographMedias;
 
   if (mediaType == "image" || mediaType == "video") {
     if (mediaType == "image") {
       const mediaElement = document.createElement("img");
       mediaElement.setAttribute(
         "src",
-        `../assets/photographers/${photographName}/${mediasList[currentIndex].image}`
+        `../assets/photographers/${photographName}/${medias[currentIndex].image}`
       );
-      mediaElement.setAttribute("alt", mediasList[currentIndex].title);
+      mediaElement.setAttribute("alt", medias[currentIndex].title);
       figureElement.appendChild(mediaElement);
       figureElement.appendChild(figcaption);
       figcaption.appendChild(lightboxH2Element);
-      lightboxH2Element.innerHTML = `${mediasList[currentIndex].title}`;
+      lightboxH2Element.innerHTML = `${medias[currentIndex].title}`;
     }
 
     if (mediaType == "video") {
@@ -58,7 +58,7 @@ function display(medias, currentIndex, photographName, mediaType) {
 
   function nextMedia() {
     currentIndex++;
-    if (currentIndex > mediasList.length - 1) {
+    if (currentIndex > medias.length - 1) {
       currentIndex = 0;
     }
     lightboxTemplate();
@@ -67,18 +67,18 @@ function display(medias, currentIndex, photographName, mediaType) {
   function prevMedia() {
     currentIndex--;
     if (currentIndex < 0) {
-      currentIndex = mediasList.length - 1;
+      currentIndex = medias.length - 1;
     }
     lightboxTemplate();
   }
 
   function lightboxTemplate() {
-    const currentMediaLightbox = mediasList[currentIndex];
+    const currentMediaLightbox = medias[currentIndex];
     figureElement.innerHTML = `
         ${
           currentMediaLightbox.image
             ? `<img src="../assets/photographers/${photographName}/${currentMediaLightbox.image}" alt="${currentMediaLightbox.alt}">`
-            : `<video controls aria-label="${currentMediaLightbox.alt}"><source src="../assets/photographers/${photographName}/${currentMediaLightbox.video}" type="video/mp4"></video>`
+            : `<video controls aria-label="${currentMediaLightbox.title}"><source src="../assets/photographers/${photographName}/${currentMediaLightbox.video}" type="video/mp4"></video>`
         }
         <figcaption><h2>${currentMediaLightbox.title}</h2></figcaption>
     `;
@@ -149,7 +149,7 @@ function trapFocus(e, modalId) {
   if (!isTabPressed) {
     return;
   }
-  const focusableElements = `button, [href], input, textarea, video, [tabindex]:not([tabindex="-1"])`;
+  const focusableElements = `button, [href], input, textarea, figure > video, [tabindex]:not([tabindex="-1"])`;
   const modal = document.getElementById(modalId);
 
   // get focusable elements in modal
