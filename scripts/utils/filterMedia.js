@@ -83,8 +83,14 @@ btnSortDateDropdown.addEventListener("click", () => {
 
 // sort by value (Numbers of Likes Popularity)
 btnSortLikesDropdown.addEventListener("click", () => {
+  sortByPopularity();
+});
+
+function sortByPopularity() {
   const sortMedias = Array.from(photographMedias);
   sortMedias.sort((a, b) => b.likes - a.likes);
   gallery.innerHTML = "";
   displayMediaData(sortMedias);
-});
+}
+
+sortByPopularity();
