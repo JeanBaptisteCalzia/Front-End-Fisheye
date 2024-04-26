@@ -88,9 +88,3 @@ btnSortLikesDropdown.addEventListener("click", () => {
   gallery.innerHTML = "";
   displayMediaData(sortMedias);
 });
-
-// Sort by value by default (Numbers of Likes Popularity)
-const sortMedias = Array.from(photographMedias);
-sortMedias.sort((a, b) => b.likes - a.likes);
-gallery.innerHTML = "";
-displayMediaData(sortMedias);
