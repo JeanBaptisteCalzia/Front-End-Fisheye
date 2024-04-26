@@ -49,6 +49,10 @@ function toggleDropdown() {
 
 // sort by name (Title)
 btnSortTitleDropdown.addEventListener("click", () => {
+  sortByTitle();
+});
+
+export function sortByTitle() {
   const sortMedias = Array.from(photographMedias);
 
   sortMedias.sort((a, b) => {
@@ -67,10 +71,15 @@ btnSortTitleDropdown.addEventListener("click", () => {
 
   gallery.innerHTML = "";
   displayMediaData(sortMedias);
-});
+  return sortMedias;
+}
 
 // sort by value (Dates ascending)
 btnSortDateDropdown.addEventListener("click", () => {
+  sortByDates();
+});
+
+export function sortByDates() {
   const sortMedias = Array.from(photographMedias);
 
   sortMedias.sort((a, b) => {
@@ -79,18 +88,21 @@ btnSortDateDropdown.addEventListener("click", () => {
 
   gallery.innerHTML = "";
   displayMediaData(sortMedias);
-});
+  return sortMedias;
+}
 
 // sort by value (Numbers of Likes Popularity)
 btnSortLikesDropdown.addEventListener("click", () => {
   sortByPopularity();
 });
 
-function sortByPopularity() {
+export function sortByPopularity() {
   const sortMedias = Array.from(photographMedias);
   sortMedias.sort((a, b) => b.likes - a.likes);
   gallery.innerHTML = "";
   displayMediaData(sortMedias);
+
+  return sortMedias;
 }
 
 sortByPopularity();

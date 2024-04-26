@@ -1,15 +1,8 @@
-import {
-  getOnePhotographer,
-  getPhotographMedias,
-} from "../pages/photographer.js";
+import { sortByPopularity } from "../utils/filterMedia.js";
 
 const lightboxCloseBtn = document.querySelector(".lightbox__close");
 const lightboxNextBtn = document.querySelector(".lightbox__next");
 const lightboxPrevBtn = document.querySelector(".lightbox__previous");
-
-const photographerId = new URLSearchParams(window.location.search).get("id");
-const photograph = getOnePhotographer(photographerId);
-const photographMedias = getPhotographMedias(photograph.id);
 
 function display(medias, currentIndex, photographName, mediaType) {
   const modal = document.querySelector(".lightbox");
@@ -23,7 +16,7 @@ function display(medias, currentIndex, photographName, mediaType) {
   const lightbox__close = document.querySelector(".lightbox__close");
   lightbox__close.focus();
 
-  medias = photographMedias;
+  medias = sortByPopularity();
 
   if (mediaType == "image" || mediaType == "video") {
     if (mediaType == "image") {
