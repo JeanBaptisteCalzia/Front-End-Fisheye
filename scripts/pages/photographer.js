@@ -76,7 +76,7 @@ export function displayMediaData(medias) {
   // Allow users to add likes or unlikes
   const btnLike = document.querySelectorAll("figcaption button");
   btnLike.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener("click", () => {
       const btnLikes = btn.previousSibling.textContent;
       const mediaLikes = photographMedias.find(
         (media) => media.likes === parseInt(btnLikes)
