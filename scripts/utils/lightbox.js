@@ -1,4 +1,8 @@
-import { sortByPopularity } from "../utils/filterMedia.js";
+import {
+  sortByPopularity,
+  sortByDates,
+  sortByTitle,
+} from "../utils/filterMedia.js";
 
 const lightboxCloseBtn = document.querySelector(".lightbox__close");
 const lightboxNextBtn = document.querySelector(".lightbox__next");
@@ -16,7 +20,18 @@ function display(medias, currentIndex, photographName, mediaType) {
   const lightbox__close = document.querySelector(".lightbox__close");
   lightbox__close.focus();
 
-  medias = sortByPopularity();
+  const dropdown = document.querySelector(".dropdown button").textContent;
+  let sortMedias = null;
+
+  if (dropdown.indexOf("Popularité") !== -1) {
+    sortMedias = sortByPopularity();
+  } else if (dropdown.indexOf("Date") !== -1) {
+    sortMedias = sortByDates();
+  } else if (dropdown.indexOf("Titre") !== -1) {
+    sortMedias = sortByTitle();
+  }
+
+  medias = sortMedias;
 
   if (mediaType == "image" || mediaType == "video") {
     if (mediaType == "image") {
