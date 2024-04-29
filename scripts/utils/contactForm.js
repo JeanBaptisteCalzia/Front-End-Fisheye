@@ -3,7 +3,6 @@ const body = document.querySelector("body");
 const openModalBtn = document.querySelector(".contact_button");
 const mainWrapper = document.getElementById("main");
 const modal = document.querySelector(".modal");
-const modalTitle = document.querySelector(".modal-title");
 const modalCloseBtn = document.querySelector(".modal-close-btn");
 const modalWrapper = document.getElementById("contact_modal");
 const form = document.querySelector("form");
