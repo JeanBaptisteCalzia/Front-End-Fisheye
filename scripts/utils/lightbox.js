@@ -115,15 +115,15 @@ function display(medias, currentIndex, photographName, mediaType) {
     const imageContainer = document.querySelector(".lightbox");
     imageContainer.style.display = "none";
     // Stop listening for tabs by removing the event listener when the modal closes.
-    document.removeEventListener(`keydown`, initTrapFocus);
+    document.removeEventListener("keydown", initTrapFocus);
   }
 
   function initTrapFocus(e) {
-    return trapFocus(e, `trap-focus-light-box`);
+    return trapFocus(e, "trap-focus-light-box");
   }
 
   // Start listening for tabs by adding an event listener when the modal opens.
-  document.addEventListener(`keydown`, initTrapFocus);
+  document.addEventListener("keydown", initTrapFocus);
 }
 
 document.addEventListener("mediaClick", (event) =>
@@ -137,12 +137,13 @@ document.addEventListener("mediaClick", (event) =>
 
 // Trapping Focus Inside the Modal
 function trapFocus(e, modalId) {
-  const isTabPressed = e.key === `Tab` || e.keyCode === 9;
+  const isTabPressed = e.key === "Tab" || e.keyCode === 9;
 
   if (!isTabPressed) {
     return;
   }
-  const focusableElements = `button, [href], input, textarea, figure > video, [tabindex]:not([tabindex="-1"])`;
+  const focusableElements =
+    "button, [href], input, textarea, figure > video, [tabindex]:not([tabindex='-1'])";
   const modal = document.getElementById(modalId);
 
   // get focusable elements in modal

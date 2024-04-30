@@ -16,7 +16,7 @@ function displayModal() {
   body.setAttribute("class", "no-scroll");
   modalFirstInput.focus();
   // Start listening for tabs by adding an event listener when the modal opens.
-  document.addEventListener(`keydown`, initTrapFocus);
+  document.addEventListener("keydown", initTrapFocus);
 }
 
 function closeModal() {
@@ -26,7 +26,7 @@ function closeModal() {
   body.setAttribute("class", "");
   openModalBtn.focus();
   // Stop listening for tabs by removing the event listener when the modal closes.
-  document.removeEventListener(`keydown`, initTrapFocus);
+  document.removeEventListener("keydown", initTrapFocus);
 }
 
 // Close modal when escape key is pressed
@@ -77,12 +77,13 @@ form.onsubmit = validate;
 
 // Trapping Focus Inside the Modal
 function trapFocus(e, modalId) {
-  const isTabPressed = e.key === `Tab` || e.keyCode === 9;
+  const isTabPressed = e.key === "Tab" || e.keyCode === 9;
 
   if (!isTabPressed) {
     return;
   }
-  const focusableElements = `button, [href], input, textarea, [tabindex]:not([tabindex="-1"])`;
+  const focusableElements =
+    "button, [href], input, textarea, [tabindex]:not([tabindex='-1'])";
   const modal = document.getElementById(modalId);
 
   // get focusable elements in modal
