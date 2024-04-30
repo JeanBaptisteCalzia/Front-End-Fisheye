@@ -1,12 +1,4 @@
-import {
-  getOnePhotographer,
-  getPhotographMedias,
-  displayMediaData,
-} from "../pages/photographer.js";
-
-const photographerId = new URLSearchParams(window.location.search).get("id");
-const photograph = getOnePhotographer(photographerId);
-const photographMedias = getPhotographMedias(photograph.id);
+import { displayMediaData, photographMedias } from "../pages/photographer.js";
 
 const dropdown = document.querySelector(".dropdown");
 const btnDropdown = document.querySelector(".dropdown > button");
@@ -53,9 +45,7 @@ btnSortTitleDropdown.addEventListener("click", () => {
 });
 
 export function sortByTitle() {
-  const sortMedias = Array.from(photographMedias);
-
-  sortMedias.sort((a, b) => {
+  photographMedias.sort((a, b) => {
     const nameA = a.title.toUpperCase(); // ignore upper and lowercase
     const nameB = b.title.toUpperCase(); // ignore upper and lowercase
     if (nameA < nameB) {
@@ -70,8 +60,7 @@ export function sortByTitle() {
   });
 
   gallery.innerHTML = "";
-  displayMediaData(sortMedias);
-  return sortMedias;
+  displayMediaData(photographMedias);
 }
 
 // sort by value (Dates ascending)
@@ -80,15 +69,12 @@ btnSortDateDropdown.addEventListener("click", () => {
 });
 
 export function sortByDates() {
-  const sortMedias = Array.from(photographMedias);
-
-  sortMedias.sort((a, b) => {
+  photographMedias.sort((a, b) => {
     return new Date(b.date) - new Date(a.date); // ascending
   });
 
   gallery.innerHTML = "";
-  displayMediaData(sortMedias);
-  return sortMedias;
+  displayMediaData(photographMedias);
 }
 
 // sort by value (Numbers of Likes Popularity)
@@ -97,12 +83,9 @@ btnSortLikesDropdown.addEventListener("click", () => {
 });
 
 export function sortByPopularity() {
-  const sortMedias = Array.from(photographMedias);
-  sortMedias.sort((a, b) => b.likes - a.likes);
+  photographMedias.sort((a, b) => b.likes - a.likes);
   gallery.innerHTML = "";
-  displayMediaData(sortMedias);
-
-  return sortMedias;
+  displayMediaData(photographMedias);
 }
 
 sortByPopularity();

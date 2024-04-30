@@ -76,16 +76,18 @@ export function displayMediaData(medias) {
   // Allow users to add likes or unlikes
   const btnLike = document.querySelectorAll("figcaption button");
   btnLike.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const btnLikes = btn.previousSibling.textContent;
-      const mediaLikes = photographMedias.find(
-        (media) => media.likes === parseInt(btnLikes)
-      );
+    const btnLikes = btn.previousSibling.textContent;
+    const mediaLikes = photographMedias.find(
+      (media) => media.likes === parseInt(btnLikes)
+    );
 
+    btn.addEventListener("click", () => {
       if (!btn.classList.contains("liked")) {
         mediaLikes.likes++;
+        mediaLikes.liked = true;
       } else {
         mediaLikes.likes--;
+        mediaLikes.liked = false;
       }
 
       btn.classList.toggle("liked");
@@ -95,12 +97,16 @@ export function displayMediaData(medias) {
       totalLikes();
     });
 
-    totalLikes();
+    if (!btn.classList.contains("liked") && mediaLikes.liked === true) {
+      btn.classList.add("liked");
+    } else if (btn.classList.contains("liked") && mediaLikes.liked === false) {
+      btn.classList.remove("liked");
+    }
   });
 }
 
 const photograph = getOnePhotographer(photographerId);
-const photographMedias = getPhotographMedias(photograph.id);
+export const photographMedias = getPhotographMedias(photograph.id);
 
 displayPhotograph(photograph);
 document.querySelector(".gallery").innerHTML = "";
