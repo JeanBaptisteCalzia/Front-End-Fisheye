@@ -28,7 +28,7 @@ btnSortTitleDropdown.addEventListener("click", () => {
   toggleDropdown();
 });
 
-// Click Open Dropdown filter gallery
+// Open / Close Dropdown filter gallery function
 function toggleDropdown() {
   dropdown.classList.toggle("open");
 
@@ -88,4 +88,5 @@ export function sortByPopularity() {
   displayMediaData(photographMedias);
 }
 
+// Sort Gallery on popularity by default
 sortByPopularity();

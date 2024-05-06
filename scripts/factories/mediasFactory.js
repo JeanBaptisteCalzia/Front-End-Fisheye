@@ -64,9 +64,11 @@ function generateArticle() {
     e.preventDefault();
   });
 
+  // Custom events on gallery media elements, trigger lightbox
   innerWrapperFigureElement.addEventListener("click", () =>
     document.dispatchEvent(
       new CustomEvent("mediaClick", {
+        // Allows to attach information to event
         detail: {
           medias: this.media,
           currentIndex: this.i,

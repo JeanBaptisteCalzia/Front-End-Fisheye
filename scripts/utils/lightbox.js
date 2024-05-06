@@ -4,6 +4,7 @@ const lightboxCloseBtn = document.querySelector(".lightbox__close");
 const lightboxNextBtn = document.querySelector(".lightbox__next");
 const lightboxPrevBtn = document.querySelector(".lightbox__previous");
 
+// Display lightbox function
 function display(medias, currentIndex, photographName, mediaType) {
   const modal = document.querySelector(".lightbox");
   modal.style.display = "block";
@@ -16,6 +17,7 @@ function display(medias, currentIndex, photographName, mediaType) {
   const lightbox__close = document.querySelector(".lightbox__close");
   lightbox__close.focus();
 
+  // Retrieve Photograph Media by photographer id
   medias = photographMedias;
 
   if (mediaType == "image" || mediaType == "video") {
@@ -77,14 +79,17 @@ function display(medias, currentIndex, photographName, mediaType) {
     `;
   }
 
+  // Display next media on click event
   lightboxNextBtn.addEventListener("click", () => {
     nextMedia();
   });
 
+  // Display prev media on click event
   lightboxPrevBtn.addEventListener("click", () => {
     prevMedia();
   });
 
+  // Close lightbox on click event
   lightboxCloseBtn.addEventListener("click", () => {
     closeLightbox();
   });
@@ -110,7 +115,7 @@ function display(medias, currentIndex, photographName, mediaType) {
     }
   });
 
-  // Click Close Button Function
+  // Close Button Function
   function closeLightbox() {
     const imageContainer = document.querySelector(".lightbox");
     imageContainer.style.display = "none";
@@ -126,6 +131,7 @@ function display(medias, currentIndex, photographName, mediaType) {
   document.addEventListener("keydown", initTrapFocus);
 }
 
+// Display lightbox on click event
 document.addEventListener("mediaClick", (event) =>
   display(
     event.detail.medias,
@@ -151,6 +157,7 @@ function trapFocus(e, modalId) {
     modalId === "trap-focus-light-box"
       ? document.querySelector(".lightbox__close")
       : modal.querySelectorAll(focusableElements)[0];
+
   const focusableContent = modal.querySelectorAll(focusableElements);
   const lastFocusableElement = focusableContent[focusableContent.length - 1];
 
