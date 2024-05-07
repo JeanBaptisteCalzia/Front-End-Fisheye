@@ -53,7 +53,6 @@ function generateArticle() {
     const btnLikes = document.createElement("button");
     btnLikes.classList.add("fas", "fa-heart");
     btnLikes.setAttribute("aria-label", "likes");
-    btnLikes.setAttribute("aria-hidden", "true");
 
     figcaptionElement.appendChild(divNumberLikes);
     divNumberLikes.appendChild(spanNumberLikes);
